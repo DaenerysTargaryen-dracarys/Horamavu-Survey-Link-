@@ -4,6 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Survey Link Generator</title>
+    <script>
+const APP_VERSION = 1;
+
+fetch("version.json?rand=" + Date.now())
+.then(res => res.json())
+.then(data => {
+  if (APP_VERSION < data.latestVersion) {
+    document.body.innerHTML = `
+      <div style="font-family:Arial;text-align:center;margin-top:35%">
+        <h2>New Update Available</h2>
+        <p>Please download the latest Horamavu Survey App</p>
+        <a href="${data.updateUrl}"
+           style="background:#ff1493;color:white;padding:15px 25px;border-radius:10px;
+           text-decoration:none;font-size:18px;display:inline-block;margin-top:15px;">
+           Download Update
+        </a>
+      </div>`;
+  }
+});
+</script>
+
 <style>
     body {
         font-family: 'Comic Sans MS', 'Marker Felt', 'Arial Rounded MT Bold', sans-serif;
@@ -1480,4 +1501,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
